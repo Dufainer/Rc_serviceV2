@@ -9,10 +9,61 @@
 	<link rel="stylesheet" href="~/Rc_serviceV2.styles.css" asp-append-version="true" />
 	<link href="~/css/side.menu.style.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+    <div class="sidebar" id="sidebar">
+        <!-- * logo -->
+        <div class="logo__details">
+            <i class='bx bxl-nodejs'></i>
+            <span class="logo__name">Rc Service</span>
+        </div>
+        <!--  * lista de Rutas  -->
+        <ul class="nav routes__pages">
+            <li class="list__styleBar">
+                <div class="dropdown">
+                    <a href="">
+                        <i class='bx bxs-bowl-rice'></i>
+                        <span class="link__a">Prueba </span>
+                    </a>
+                </div>
+            </li>
+            <li class="list__styleBar">
+                <div class="dropdown">
+                    <a href="">
+                        <i class='bx bxs-lemon'></i>
+                        <span class="link__a">Prueba 2 </span>
+                    </a>
+                </div>
+            </li>
+            <li class="list__styleBar">
+                <div class="dropdown">
+                    <a href="">
+                        <i class='bx bxs-objects-vertical-bottom'></i>
+                        <span class="link__a">3 Prueba </span>
+                    </a>
+                </div>
+            </li>
+            <li class="list__styleBar">
+                <div class="dropdown">
+                    <a href="">
+                        <i class='bx bxs-coffee-bean'></i>
+                        <span class="link__a"> Cuarta Prueba </span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-    <div class="area"></div>
+    <div class="home__section">
+        <div class="home__content">
+            <i class='bx bx-menu' id="btn_sidebar"></i>
+            <!-- <span class="text">Drop</span> -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+   @* <div class="area"></div>
     <nav class="main-menu">
         <ul>
             <li>
@@ -70,7 +121,7 @@
                 </a>
             </li>
         </ul>
-    </nav>
+    </nav>*@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -88,6 +139,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/side.menu.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
