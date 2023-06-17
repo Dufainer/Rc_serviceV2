@@ -183,8 +183,8 @@ nav {
     list-style: none;
     position: relative;
     /* background-color: blue; */
-    transition: 1s;
-    height: 40px;
+    transition: 1s; 
+    width: 100%;
 }
 
             .sidebar .routes__pages .list__styleBar div a {
