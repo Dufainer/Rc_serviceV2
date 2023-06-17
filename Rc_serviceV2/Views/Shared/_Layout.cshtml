@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Rc_serviceV2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/Rc_serviceV2.styles.css" asp-append-version="true" />
+	<link href="~/css/side.menu.style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="area"></div>
+    <nav class="main-menu">
+        <ul>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fa fa-house fa-2x"></i>
+                    <span class="nav-text">
+                        Home
+                    </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a asp-area="" asp-controller="Servicio" asp-action="Index">
+                    <i class="fa fa-toolbox fa-2x"></i>
+                    <span class="nav-text">
+                        Servicios
+                    </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-person-digging fa-2x"></i>
+                    <span class="nav-text">
+                        Proveedores
+                    </span>
+                </a>
+
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-house-chimney-user fa-2x"></i>
+                    <span class="nav-text">
+                        Inmuebles
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-star fa-2x"></i>
+                    <span class="nav-text">
+                        Ofertas
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="logout">
+            <li>
+                <a href="#">
+                    <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">
+                        Logout
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Rc_serviceV2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <style>
+
+    </style>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
