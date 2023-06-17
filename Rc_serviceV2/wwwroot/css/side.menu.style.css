@@ -131,8 +131,7 @@ nav {
     font-weight: 300;
     src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
 }*/
-
-url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 * {
     font-family: 'Poppins', sans-serif;
@@ -174,53 +173,49 @@ url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;7
             font-weight: 600;
         }
 
-    .sidebar .routes__pages {
-        /* background-color: red; */
-        height: 100%;
-        padding-top: 30px;
-        & .list__styleBar
+.sidebar .routes__pages {
+    /* background-color: red; */
+    
+    padding-top: 30px;
+}
 
-{
+.sidebar .routes__pages .list__styleBar {
     list-style: none;
     position: relative;
     /* background-color: blue; */
     transition: 1s;
-    & div a
-
-{
-    text-decoration: none;
-    color: white;
-    & .link__a
-
-{
-    font-size: 18px;
-    font-weight: 400;
+    height: 40px;
 }
 
-& i {
-    /* background-color: black; */
-    height: 50px;
-    min-width: 78px;
-    text-align: center;
-    line-height: 50px;
-    color: white;
-}
+            .sidebar .routes__pages .list__styleBar div a {
+                text-decoration: none;
+                color: white;
+            }
 
-}
-}
+                .sidebar .routes__pages .list__styleBar div a .link__a {
+                    font-size: 18px;
+                    font-weight: 400;
+                }
 
-& .list__styleBar:hover {
-    transition: 0.5s;
-    background-color: rgba(255, 255, 255, 0.404);
-}
+                .sidebar .routes__pages .list__styleBar div a i {
+                    /* background-color: black; */
+                    height: 50px;
+                    min-width: 78px;
+                    text-align: center;
+                    line-height: 50px;
+                    color: white;
+                }
 
-}
+            .sidebar .routes__pages .list__styleBar:hover {
+                transition: 0.5s;
+                background-color: rgba(255, 255, 255, 0.404);
+            }
 
-.sidebar.close ~ .home__section {
-    left: 78px;
-    width: calc(100% - 78px);
-    height: 100vh;
-}
+    .sidebar.close ~ .home__section {
+        left: 78px;
+        width: calc(100% - 78px);
+        height: 100vh;
+    }
 
 .home__section {
     transition: 0.5s;
@@ -229,23 +224,70 @@ url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;7
     width: calc(100% - 260px);
     height: 100vh;
     left: 260px;
-    /* home content es el navbar */
-    & .home__content
+}
 
-{
-    background-color: rgba(37, 37, 37, 0.575);
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.473);
-    height: 60px;
+    .home__section .home__content {
+        background-color: rgba(37, 37, 37, 0.575);
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.473);
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 40px;
+    }
+
+        .home__section .home__content #btn_sidebar {
+            color: black;
+            font-size: 35px;
+            margin-left: 25px;
+            cursor: pointer;
+            transition: 0.5s;
+            animation: Rotar;
+            animation-duration: 0.5s;
+            border-radius: 50%;
+        }
+
+            .home__section .home__content #btn_sidebar:hover {
+                transition: 0.5s;
+                color: white;
+            }
+
+            .home__section .home__content #btn_sidebar:active {
+                background-color: rgb(141, 141, 141);
+            }
+
+            .home__section .home__content #btn_sidebar.close {
+                animation: trasRotar;
+                animation-duration: 0.5s;
+            }
+
+.User__option {
     display: flex;
     align-items: center;
-    & i
-
-{
-    color: black;
-    font-size: 35px;
-    margin-left: 25px;
-    cursor: pointer;
 }
 
+    .User__option i {
+        font-size: 60px;
+    }
+
+@keyframes Rotar {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
 }
+
+@keyframes trasRotar {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(-180deg);
+    }
 }
+
+
