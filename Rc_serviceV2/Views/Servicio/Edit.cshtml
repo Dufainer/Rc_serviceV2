@@ -63,13 +63,13 @@
                         title: '¡Éxito!',
                         text: 'Has editado el servicio con éxito.',
                         showConfirmButton: false,
-                        timer: 2500
+                        timer: 1700
                     });
 
                     // Enviar el formulario después de mostrar la alerta
                     setTimeout(function () {
                         $('form').unbind('submit').submit();
-                    }, 2500);
+                    }, 1700);
                 } else {
                     // Los campos del servicio no han cambiado, enviar el formulario directamente
                     $('form').unbind('submit').submit();
