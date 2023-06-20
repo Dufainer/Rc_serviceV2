@@ -4,9 +4,8 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h3>Editar servicio</h3>
 
-<h4>Servicio</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,27 +17,64 @@
                 <input asp-for="TipoServicio" class="form-control" />
                 <span asp-validation-for="TipoServicio" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="DetallesServicio" class="control-label"></label>
                 <input asp-for="DetallesServicio" class="form-control" />
                 <span asp-validation-for="DetallesServicio" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
                 </label>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Editar" class="btn btn-primary" id="editarBtn" />
+                <a asp-action="Index" class="btn btn-dark">Volver</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(function () {
+            $('#editarBtn').click(function (e) {
+                e.preventDefault(); // Evitar que el formulario se envíe de forma predeterminada
+
+                // Verificar si los campos del servicio han cambiado
+                var tipoServicioAnterior = '@Model.TipoServicio';
+                var detallesServicioAnterior = '@Model.DetallesServicio';
+                var tipoServicioActual = $('#TipoServicio').val();
+                var detallesServicioActual = $('#DetallesServicio').val();
+
+                if (tipoServicioAnterior !== tipoServicioActual || detallesServicioAnterior !== detallesServicioActual) {
+                    // Los campos del servicio han cambiado, mostrar la alerta
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Éxito!',
+                        text: 'Has editado el servicio con éxito.',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+
+                    // Enviar el formulario después de mostrar la alerta
+                    setTimeout(function () {
+                        $('form').unbind('submit').submit();
+                    }, 2500);
+                } else {
+                    // Los campos del servicio no han cambiado, enviar el formulario directamente
+                    $('form').unbind('submit').submit();
+                }
+            });
+        });
+    </script>
 }
