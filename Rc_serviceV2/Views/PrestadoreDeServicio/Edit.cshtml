@@ -1,0 +1,58 @@
+﻿@model Rc_serviceV2.Models.PrestadoresDeServicio
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container-contact100">
+    <div class="wrap-contact100 bg-dark">
+                <form asp-action="Edit" class="contact100-form text-light">
+            <h3 class="contact100-form-title">Actualizar Proveedores</h3>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="IdPrestador" />
+                    <div class="form-group">
+      
+                        <input asp-for="NamePrestador" class="form-control bg-dark text-light" />
+                        <span asp-validation-for="NamePrestador" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input asp-for="LastnamePrestador" class="form-control bg-dark text-light" />
+                        <span asp-validation-for="LastnamePrestador" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input asp-for="Celular" class="form-control bg-dark text-light" />
+                        <span asp-validation-for="Celular" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input asp-for="Email" class="form-control bg-dark text-light" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input asp-for="UbicacionId" class="form-control bg-dark text-light" />
+                        <span asp-validation-for="UbicacionId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <select asp-for="ServiciosIdServicio" class="form-control bg-dark text-light" asp-items="ViewBag.ServiciosIdServicio"></select>
+                        <span asp-validation-for="ServiciosIdServicio" class="text-danger"></span>
+                    </div>
+            <div class="container-contact100-form-btn">
+                <button type="submit" value="Save" class="btn btn-primary">Actualizar</button>
+            </div>
+
+            <div class="container-contact100-form-btn">
+                <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+            </div>
+            </form>
+            </div>
+        </div>
+
+       
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
