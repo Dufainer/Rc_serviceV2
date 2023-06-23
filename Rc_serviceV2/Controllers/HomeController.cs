@@ -15,7 +15,12 @@ namespace Rc_serviceV2.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Redirect("/Identity/Account/Login");
+            }
+
+            return View();
 		}
 
 		public IActionResult Privacy()

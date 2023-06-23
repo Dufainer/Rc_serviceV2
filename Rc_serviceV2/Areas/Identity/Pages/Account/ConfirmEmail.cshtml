@@ -1,0 +1,26 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm email";
+}
+
+<style>
+    .btn-back {
+        font-size: 20px;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+        border-radius: 20px;
+        padding: 10px 20px;
+        background-color: #f1f1f1;
+    }
+
+        .btn-back:hover {
+            color: #343a40;
+            background-color: #dcdcdc;
+        }
+</style>
+
+<h1>@ViewData["Title"]</h1>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<a href="/Identity/Account/Login" class="btn btn-back"><i class="fas fa-arrow-left"></i> Iniciar sesión</a>

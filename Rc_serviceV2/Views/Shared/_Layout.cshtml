@@ -11,64 +11,118 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+<style>
+    .btn-backd {
+        background: none;
+        border: none;
+        font-size: 0;
+        color: white;
+        cursor: pointer;
+    }
+
+        .btn-backd i {
+            font-size: 40px;
+            font-weight: bold;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .btn-backd:hover i {
+            transform: scale(1.2);
+            color: blue; /* Cambia el color a tu preferencia */
+        }
+</style>
+
+
 <body>
-    <div class="sidebar" id="sidebar">
-        <!-- * logo -->
-        <div class="logo__details">
-            <i class='bx bxl-nodejs'></i>
-            <span class="logo__name">Rc Service</span>
-        </div>
-        <!--  * lista de Rutas  -->
-        <ul class="nav routes__pages">
-            <li class="list__styleBar">
-                <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-bowl-rice'></i>
-                        <span class="link__a">Prueba </span>
-                    </a>
-                </div>
-            </li>
-            <li class="list__styleBar">
-                <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-lemon'></i>
-                        <span class="link__a">Prueba 2 </span>
-                    </a>
-                </div>
-            </li>
-            <li class="list__styleBar">
-                <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-objects-vertical-bottom'></i>
-                        <span class="link__a">3 Prueba </span>
-                    </a>
-                </div>
-            </li>
-            <li class="list__styleBar">
-                <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-coffee-bean'></i>
-                        <span class="link__a"> Cuarta Prueba </span>
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </div>
+        
 
-    <div class="home__section">
-        <div class="home__content">
-            <i class='bx bx-menu' id="btn_sidebar"></i>
-            <!-- <span class="text">Drop</span> -->
-        </div>
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
-    </div>
+            <div class="sidebar" id="sidebar">
+                <!-- * logo -->
+                <div class="logo__details">
+                    <i class='bx bxl-nodejs'></i>
+                    <span class="logo__name">Rc Service</span>
+                </div>
+                <!--  * lista de Rutas  -->
+        @if (User.Identity.IsAuthenticated)
+        {
+            <ul class="nav routes__pages">
 
-    <script src="script.js"></script>
-   @* <div class="area"></div>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a href="">
+                            <i class='bx bxs-bowl-rice'></i>
+                            <span class="link__a">Prueba </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a href="">
+                            <i class='bx bxs-bowl-rice'></i>
+                            <span class="link__a">Prueba </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a href="">
+                            <i class='bx bxs-lemon'></i>
+                            <span class="link__a">Prueba 2 </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a href="">
+                            <i class='bx bxs-objects-vertical-bottom'></i>
+                            <span class="link__a">3 Prueba </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a href="">
+                            <i class='bx bxs-coffee-bean'></i>
+                            <span class="link__a"> Cuarta Prueba </span>
+                        </a>
+                    </div>
+                </li>
+
+
+            </ul>
+            }
+            </div>
+            <style>
+                #btn_logout {
+                font-size: 24px;
+                color: black;
+                }
+            </style>
+
+            <div class="home__section">
+                <div class="home__content">
+                    <i class='bx bx-menu' id="btn_sidebar"></i>
+                    <!-- <span class="text">Drop</span> -->
+                    @{
+                        if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                            <button type="submit" class="btn-backd"><i class="fas fa-arrow-left"></i></button>
+
+                            </form>
+                        }
+                       
+                    }
+                </div>
+                <div class="container">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+            }
+            <script src="script.js"></script>
+            @* <div class="area"></div>
     <nav class="main-menu">
         <ul>
             <li>
@@ -128,20 +182,22 @@
         </ul>
     </nav>*@
 
-    
 
-   @* <footer class="border-top footer text-muted">
+
+            @* <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - Rc_serviceV2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>*@
-    <style>
+            <style>
 
-    </style>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/js/site.js" asp-append-version="true"></script>
-	<script src="~/js/side.menu.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+            </style>
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            <script src="~/js/side.menu.js"></script>
+            @await RenderSectionAsync("Scripts", required: false)
+        
+    </body>
+
 </html>
