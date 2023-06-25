@@ -27,52 +27,53 @@
             <i class='bx bxl-nodejs'></i>
             <span class="logo__name">Rc Service</span>
         </div>
-        <!--  * lista de Rutas  -->
-        <ul class="nav routes__pages">
-            <li class="list__styleBar">
-                <div class="dropdown">
-                    <a asp-area="" asp-controller="Home" asp-action="Index">
-                        <i class='bx bxs-home'></i>
-                        <span class="link__a">Home</span>
-                    </a>
-                </div>
-            </li>
-            <li class="list__styleBar">
-                <div class="dropdown">
-                    <a asp-area="" asp-controller="Servicio" asp-action="Index">
-                        <i class='bx bxs-book'></i>
-                        <span class="link__a">Servicios </span>
-                    </a>
-                </div>
-            </li>
-            <li class="list__styleBar">
-                <div class="dropdown">
-                    <a asp-area="" asp-controller="Oferta" asp-action="Index">
-                        <i class='bx bxs-offer'></i>
-                        <span class="link__a">Oferta</span>
-                    </a>
-                </div>
-            </li>
-            <li class="list__styleBar">
-                <div class="dropdown">
-                    <a asp-area="" asp-controller="Inmueble" asp-action="Index">
-                        <i class='bx bxs-building-house'></i>
-                        <span class="link__a">Inmueble</span>
-                    </a>
-                </div>
-            </li>
-            <li class="list__styleBar">
-                <div class="dropdown">
-                    <a asp-area="" asp-controller="Propietario" asp-action="Index">
-                        <i class='bx bxs-briefcase-alt-2'></i>
-                        <span class="link__a">Propietario</span>
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <div class="home__section">
+                @if (User.Identity.IsAuthenticated)
+        {
+            <!--  * lista de Rutas  -->
+            <ul class="nav routes__pages">
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">
+                            <i class='bx bxs-home'></i>
+                            <span class="link__a">Home</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a asp-area="" asp-controller="Servicio" asp-action="Index">
+                            <i class='bx bxs-book'></i>
+                            <span class="link__a">Servicios </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a asp-area="" asp-controller="Oferta" asp-action="Index">
+                            <i class='bx bxs-offer'></i>
+                            <span class="link__a">Oferta</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a asp-area="" asp-controller="Inmueble" asp-action="Index">
+                            <i class='bx bxs-building-house'></i>
+                            <span class="link__a">Inmueble</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a asp-area="" asp-controller="Propietario" asp-action="Index">
+                            <i class='bx bxs-briefcase-alt-2'></i>
+                            <span class="link__a">Propietario</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        }
+        <div class="home__section">
         <div class="home__content">
             <i class='bx bx-menu' id="btn_sidebar"></i>
             <!-- <span class="text">Drop</span> -->
@@ -96,73 +97,7 @@
     </div>
 
     <script src="script.js"></script>
-    @* <div class="area"></div>
-    <nav class="main-menu">
-    <ul>
-    <li>
-    <a asp-area="" asp-controller="Home" asp-action="Index">
-    <i class="fa fa-house fa-2x"></i>
-    <span class="nav-text">
-    Home
-    </span>
-    </a>
-
-    </li>
-    <li class="has-subnav">
-    <a asp-area="" asp-controller="Servicio" asp-action="Index">
-    <i class="fa fa-toolbox fa-2x"></i>
-    <span class="nav-text">
-    Servicios
-    </span>
-    </a>
-
-    </li>
-    <li class="has-subnav">
-    <a href="#">
-    <i class="fa fa-person-digging fa-2x"></i>
-    <span class="nav-text">
-    Proveedores
-    </span>
-    </a>
-
-    </li>
-    <li>
-    <a href="#">
-    <i class="fa fa-house-chimney-user fa-2x"></i>
-    <span class="nav-text">
-    Inmuebles
-    </span>
-    </a>
-    </li>
-    <li>
-    <a href="#">
-    <i class="fa fa-star fa-2x"></i>
-    <span class="nav-text">
-    Ofertas
-    </span>
-    </a>
-    </li>
-    </ul>
-
-    <ul class="logout">
-    <li>
-    <a href="#">
-    <i class="fa fa-power-off fa-2x"></i>
-    <span class="nav-text">
-    Logout
-    </span>
-    </a>
-    </li>
-    </ul>
-    </nav>*@
-
-
-
-    @* <footer class="border-top footer text-muted">
-    <div class="container">
-    &copy; 2023 - Rc_serviceV2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </div>
-    </footer>*@
+   
     <style>
 
     </style>
