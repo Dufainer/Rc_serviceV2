@@ -19,8 +19,7 @@
     <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
     
 
-</head>
-<style>
+@*<style>
     .btn-backd {
         background: none;
         border: none;
@@ -39,7 +38,8 @@
             transform: scale(1.2);
             color: blue; /* Cambia el color a tu preferencia */
         }
-</style>
+</style>*@
+</head>
 
 
 <body>
@@ -99,7 +99,6 @@
         <div class="home__content">
             <i class='bx bx-menu' id="btn_sidebar"></i>
             <!-- <span class="text">Drop</span> -->
-        
         @{
             if (User.Identity?.IsAuthenticated ?? false)
             {
@@ -108,7 +107,6 @@
 
                 </form>
             }
-
         }
     </div>
     <div class="container">
@@ -118,11 +116,7 @@
     </div>
     </div>
 
-    <script src="script.js"></script>
    
-    <style>
-
-    </style>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
