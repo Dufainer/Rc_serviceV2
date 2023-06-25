@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Rc_serviceV2.Models.Inmueble>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@*<div>
+    <form method="GET" action="@Url.Action("Index")">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="searchId" placeholder="Buscar por ID">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
+</div>*@
+
+@*MENSAJE DE QUE NO EXISTE*@
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+<table @*class="table"*@ class="display" id="example" style="width:100%; height:100%">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.IdInmueble)*@
+                ID
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.TipoInmueble)*@
+                Tipo Inmueble
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.DetallesInmueble)*@
+                Detalles Inmuebles
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.UbicacionId)*@
+                Direccion
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.PropietariosIdPropietarioNavigation)*@
+                CC_Propietario
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdInmueble)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoInmueble)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DetallesInmueble)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UbicacionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropietariosIdPropietarioNavigation.IdPropietario)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdInmueble">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdInmueble">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdInmueble">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            $('#example').DataTable({
+                "lengthMenu": [[5, 10, 20], [5, 10, 20]],
+                "language": {
+                    "zeroRecords": "Propietario no encontrado",
+                },
+                "drawCallback": function (settings) {
+                    var api = this.api();
+                    if (api.page.info().recordsTotal === 0) {
+                        $('#example').find('.dataTables_empty').text("Propietario no encontrado");
+                    }
+                }
+            });
+        });
+    </script>
+}

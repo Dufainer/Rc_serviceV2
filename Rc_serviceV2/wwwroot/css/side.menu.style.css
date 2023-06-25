@@ -214,7 +214,8 @@ nav {
 .sidebar.close ~ .home__section {
     left: 78px;
     width: calc(100% - 78px);
-    height: 100vh;
+    height: max-content; /*MODIFIQUE ESTA LINEA DE CODIGO*/
+    background: #000;
 }
 
 .home__section {
@@ -222,7 +223,7 @@ nav {
     position: absolute;
     background-color: rgb(204, 204, 204);
     width: calc(100% - 260px);
-    height: 100vh;
+    height: max-content; /*MODIFIQUE ESTA LINEA DE CODIGO*/
     left: 260px;
 }
 

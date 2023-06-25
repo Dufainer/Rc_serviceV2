@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="~/Rc_serviceV2.styles.css" asp-append-version="true" />
 	<link href="~/css/side.menu.style.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -17,22 +18,22 @@
         <div class="logo__details">
             <i class='bx bxl-nodejs'></i>
             <span class="logo__name">Rc Service</span>
-        </div>
+        </div>  
         <!--  * lista de Rutas  -->
         <ul class="nav routes__pages">
             <li class="list__styleBar">
                 <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-bowl-rice'></i>
-                        <span class="link__a">Prueba </span>
+                    <a class="link__a" asp-area="" asp-controller="Propietarios" asp-action="Index">
+                        <i class='bx bx-body'></i>
+                        Propietarios
                     </a>
                 </div>
             </li>
             <li class="list__styleBar">
                 <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-lemon'></i>
-                        <span class="link__a">Prueba 2 </span>
+                    <a class="link__a" asp-area="" asp-controller="Inmuebles" asp-action="Index">
+                        <i class='bx bx-body'></i>
+                        Inmuebles
                     </a>
                 </div>
             </li>
@@ -142,6 +143,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	<script src="~/js/side.menu.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
