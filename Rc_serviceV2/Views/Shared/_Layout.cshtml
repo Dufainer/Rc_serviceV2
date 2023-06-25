@@ -76,12 +76,23 @@
         <div class="home__content">
             <i class='bx bx-menu' id="btn_sidebar"></i>
             <!-- <span class="text">Drop</span> -->
-        </div>
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+        
+        @{
+            if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="btn-backd"><i class="fas fa-arrow-left"></i></button>
+
+                </form>
+            }
+
+        }
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
     </div>
 
     <script src="script.js"></script>
