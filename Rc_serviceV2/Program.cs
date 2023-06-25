@@ -11,10 +11,10 @@ internal class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
-        builder.Services.AddDbContext<Rc_serviceV2Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnetion")));
+        builder.Services.AddDbContext<Rc_serviceContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnetion")));
 
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<Rc_serviceV2Context>();
+            .AddEntityFrameworkStores<Rc_serviceContext>();
 
 
         builder.Services.AddControllersWithViews();
