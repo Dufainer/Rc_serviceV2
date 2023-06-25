@@ -1,0 +1,53 @@
+﻿@model Rc_serviceV2.Models.Oferta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card bg-dark rounded-lg" style="width: 80%;">
+        <div class="card-header">
+            <h1 class="card-title text-light">INFORMACION</h1>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-light">Propietario</h4>
+                    <hr class="bg-light" />
+                    <dl class="text-light">
+                        <dt>Nombres:</dt>
+                        <dd>@Html.DisplayFor(model => model.InmueblesIdInmuebleNavigation.PropietariosIdPropietarioNavigation.NamePropietario)</dd>
+                        <dt>Apellidos:</dt>
+                        <dd>@Html.DisplayFor(model => model.InmueblesIdInmuebleNavigation.PropietariosIdPropietarioNavigation.LastnamePropietario)</dd>
+                        <dt>Celular:</dt>
+                        <dd>@Html.DisplayFor(model => model.InmueblesIdInmuebleNavigation.PropietariosIdPropietarioNavigation.Celular)</dd>
+                        <dt>Email:</dt>
+                        <dd>@Html.DisplayFor(model => model.InmueblesIdInmuebleNavigation.PropietariosIdPropietarioNavigation.Email)</dd>
+                        <dt>Dirección:</dt>
+                        <dd>@Html.DisplayFor(model => model.InmueblesIdInmuebleNavigation.PropietariosIdPropietarioNavigation.UbicacionId)</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-light">Inmueble</h4>
+                    <hr class="bg-light" />
+                    <dl class="text-light">
+                        <dt>Tipo de inmueble:</dt>
+                        <dd>@Html.DisplayFor(model => model.InmueblesIdInmuebleNavigation.TipoInmueble)</dd>
+                        <dt>Detalle del Inmueble:</dt>
+                        <dd>@Html.DisplayFor(model => model.InmueblesIdInmuebleNavigation.DetallesInmueble)</dd>
+
+                    </dl>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a asp-action="Edit" asp-route-id="@Model?.IdOfertas" class="btn btn-primary">Edit</a>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

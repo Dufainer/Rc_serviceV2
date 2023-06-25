@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,10 +7,18 @@
     <title>@ViewData["Title"] - Rc_serviceV2</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/Rc_serviceV2.styles.css" asp-append-version="true" />
-	<link href="~/css/side.menu.style.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Rc_serviceV2.styles.css" asp-append-version="true" />
+    <link href="~/css/side.menu.style.css" rel="stylesheet" />
+    <link href="~/css/oferta.style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="~/js/datatable.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    
+
 </head>
 <body>
     <div class="sidebar" id="sidebar">
@@ -22,33 +31,41 @@
         <ul class="nav routes__pages">
             <li class="list__styleBar">
                 <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-bowl-rice'></i>
-                        <span class="link__a">Prueba </span>
+                    <a asp-area="" asp-controller="Home" asp-action="Index">
+                        <i class='bx bxs-home'></i>
+                        <span class="link__a">Home</span>
                     </a>
                 </div>
             </li>
             <li class="list__styleBar">
                 <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-lemon'></i>
-                        <span class="link__a">Prueba 2 </span>
+                    <a asp-area="" asp-controller="Servicio" asp-action="Index">
+                        <i class='bx bxs-book'></i>
+                        <span class="link__a">Servicios </span>
                     </a>
                 </div>
             </li>
             <li class="list__styleBar">
                 <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-objects-vertical-bottom'></i>
-                        <span class="link__a">3 Prueba </span>
+                    <a asp-area="" asp-controller="Oferta" asp-action="Index">
+                        <i class='bx bxs-offer'></i>
+                        <span class="link__a">Oferta</span>
                     </a>
                 </div>
             </li>
             <li class="list__styleBar">
                 <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-coffee-bean'></i>
-                        <span class="link__a"> Cuarta Prueba </span>
+                    <a asp-area="" asp-controller="Inmueble" asp-action="Index">
+                        <i class='bx bxs-building-house'></i>
+                        <span class="link__a">Inmueble</span>
+                    </a>
+                </div>
+            </li>
+            <li class="list__styleBar">
+                <div class="dropdown">
+                    <a asp-area="" asp-controller="Propietario" asp-action="Index">
+                        <i class='bx bxs-briefcase-alt-2'></i>
+                        <span class="link__a">Propietario</span>
                     </a>
                 </div>
             </li>
@@ -68,80 +85,80 @@
     </div>
 
     <script src="script.js"></script>
-   @* <div class="area"></div>
+    @* <div class="area"></div>
     <nav class="main-menu">
-        <ul>
-            <li>
-                <a asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="fa fa-house fa-2x"></i>
-                    <span class="nav-text">
-                        Home
-                    </span>
-                </a>
+    <ul>
+    <li>
+    <a asp-area="" asp-controller="Home" asp-action="Index">
+    <i class="fa fa-house fa-2x"></i>
+    <span class="nav-text">
+    Home
+    </span>
+    </a>
 
-            </li>
-            <li class="has-subnav">
-                <a asp-area="" asp-controller="Servicio" asp-action="Index">
-                    <i class="fa fa-toolbox fa-2x"></i>
-                    <span class="nav-text">
-                        Servicios
-                    </span>
-                </a>
+    </li>
+    <li class="has-subnav">
+    <a asp-area="" asp-controller="Servicio" asp-action="Index">
+    <i class="fa fa-toolbox fa-2x"></i>
+    <span class="nav-text">
+    Servicios
+    </span>
+    </a>
 
-            </li>
-            <li class="has-subnav">
-                <a href="#">
-                    <i class="fa fa-person-digging fa-2x"></i>
-                    <span class="nav-text">
-                        Proveedores
-                    </span>
-                </a>
+    </li>
+    <li class="has-subnav">
+    <a href="#">
+    <i class="fa fa-person-digging fa-2x"></i>
+    <span class="nav-text">
+    Proveedores
+    </span>
+    </a>
 
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-house-chimney-user fa-2x"></i>
-                    <span class="nav-text">
-                        Inmuebles
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-star fa-2x"></i>
-                    <span class="nav-text">
-                        Ofertas
-                    </span>
-                </a>
-            </li>
-        </ul>
+    </li>
+    <li>
+    <a href="#">
+    <i class="fa fa-house-chimney-user fa-2x"></i>
+    <span class="nav-text">
+    Inmuebles
+    </span>
+    </a>
+    </li>
+    <li>
+    <a href="#">
+    <i class="fa fa-star fa-2x"></i>
+    <span class="nav-text">
+    Ofertas
+    </span>
+    </a>
+    </li>
+    </ul>
 
-        <ul class="logout">
-            <li>
-                <a href="#">
-                    <i class="fa fa-power-off fa-2x"></i>
-                    <span class="nav-text">
-                        Logout
-                    </span>
-                </a>
-            </li>
-        </ul>
+    <ul class="logout">
+    <li>
+    <a href="#">
+    <i class="fa fa-power-off fa-2x"></i>
+    <span class="nav-text">
+    Logout
+    </span>
+    </a>
+    </li>
+    </ul>
     </nav>*@
 
-    
 
-   @* <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Rc_serviceV2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+
+    @* <footer class="border-top footer text-muted">
+    <div class="container">
+    &copy; 2023 - Rc_serviceV2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
     </footer>*@
     <style>
 
     </style>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/js/site.js" asp-append-version="true"></script>
-	<script src="~/js/side.menu.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/side.menu.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
