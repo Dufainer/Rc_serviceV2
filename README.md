@@ -1,12 +1,12 @@
 # Rc_serviceV2
 
 ## Participantes
-> Dufainer Esquivel
-> Jeni Bejarano
-> Brandon Quintero
-> Cristian Pardo
-> Santiago Hoyos
-> Juan Pineda ??? 
+- Dufainer Esquivel
+- Jeni Bejarano
+- Brandon Quintero
+- Cristian Pardo
+- Santiago Hoyos
+- Juan Pineda ??? 
 
 ### Notas al programador
 
