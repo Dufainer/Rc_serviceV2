@@ -20,6 +20,28 @@
     
 
 </head>
+<style>
+    .btn-backd {
+        background: none;
+        border: none;
+        font-size: 0;
+        color: white;
+        cursor: pointer;
+    }
+
+        .btn-backd i {
+            font-size: 40px;
+            font-weight: bold;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .btn-backd:hover i {
+            transform: scale(1.2);
+            color: blue; /* Cambia el color a tu preferencia */
+        }
+</style>
+
+
 <body>
     <div class="sidebar" id="sidebar">
         <!-- * logo -->
@@ -103,8 +125,8 @@
     </style>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/side.menu.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/side.menu.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
