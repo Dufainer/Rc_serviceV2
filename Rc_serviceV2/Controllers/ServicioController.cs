@@ -17,6 +17,7 @@ namespace Rc_serviceV2.Controllers
         {
             _context = context;
         }
+      
 
         // GET: Servicio
         public async Task<IActionResult> Index()
