@@ -5,7 +5,7 @@
 }
 <div class="container-contact100 ">
     <div class="wrap-contact100 bg-dark">
-        <form class="contact100-form text-light" asp-action="Create">
+        <form id="createForm" class="contact100-form text-light" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <h3 class="contact100-form-title">Crear Proveedor</h3>
 
@@ -49,5 +49,29 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(function () {
+            $('#createForm').submit(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Desea gaurdar los cambios?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar',
+                    denyButtonText: "No guardar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        setTimeout(function () {
+                            $('#createForm').unbind('submit').submit();
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambios no guardados', '', 'info');
+                    }
+                });
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

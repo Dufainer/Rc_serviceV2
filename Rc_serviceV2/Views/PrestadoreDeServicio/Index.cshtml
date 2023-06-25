@@ -6,12 +6,6 @@
 
 <h1 class="text-center">Proveedores</h1>
 <div class="d-flex justify-content-between">
-<form method="GET" action="@Url.Action("Index")">
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" name="searchId" placeholder="Buscar por ID">
-        <button class="btn btn-primary" type="submit">Buscar</button>
-    </div>
-</form >
 <a asp-action="Create" style="display: flex; justify-content: flex-end;">
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#000000" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
@@ -19,8 +13,7 @@
 </a>
 </div>
 
-
-<table class="table table-dark table-rounded">
+<table id="example" class="display" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -89,5 +82,17 @@
         }
     </tbody>
 </table>
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            $('#example').DataTable({
+                info: false,
+            });
+        });
+    </script>
+}
 
 

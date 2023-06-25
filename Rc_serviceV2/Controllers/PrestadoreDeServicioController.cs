@@ -55,7 +55,7 @@ namespace Rc_serviceV2.Controllers
         // GET: PrestadoreDeServicio/Create
         public IActionResult Create()
         {
-            ViewData["ServiciosIdServicio"] = new SelectList(_context.Servicios, "TipoServicio", "TipoServicio");
+            ViewData["ServiciosIdServicio"] = new SelectList(_context.Servicios, "IdServicio", "IdServicio");
             return View();
         }
 
