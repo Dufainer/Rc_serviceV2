@@ -136,37 +136,35 @@ namespace Rc_serviceV2.Controllers
             {
                 return NotFound();
             }
-
-            var prestadoresDeServicio = await _context.PrestadoresDeServicios
-                .Include(p => p.ServiciosIdServicioNavigation)
-                .FirstOrDefaultAsync(m => m.IdPrestador == id);
-            if (prestadoresDeServicio == null)
-            {
-                return NotFound();
-            }
-
-            return View(prestadoresDeServicio);
-        }
-
-        // POST: PrestadoreDeServicio/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-
-            if (_context.PrestadoresDeServicios == null)
-            {
-                return Problem("Entity set 'Rc_serviceContext.PrestadoresDeServicios'  is null.");
-            }
             var prestadoresDeServicio = await _context.PrestadoresDeServicios.FindAsync(id);
             if (prestadoresDeServicio != null)
             {
                 _context.PrestadoresDeServicios.Remove(prestadoresDeServicio);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        // POST: PrestadoreDeServicio/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(string id)
+        //{
+
+        //    if (_context.PrestadoresDeServicios == null)
+        //    {
+        //        return Problem("Entity set 'Rc_serviceContext.PrestadoresDeServicios'  is null.");
+        //    }
+        //    var prestadoresDeServicio = await _context.PrestadoresDeServicios.FindAsync(id);
+        //    if (prestadoresDeServicio != null)
+        //    {
+        //        _context.PrestadoresDeServicios.Remove(prestadoresDeServicio);
+        //    }
+            
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool PrestadoresDeServicioExists(string id)
         {
