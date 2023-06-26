@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Rc_serviceV2.Models
 {
-    public partial class Rc_serviceContext : DbContext
+    public partial class Rc_serviceV2Context : IdentityDbContext<IdentityUser>
     {
-        public Rc_serviceContext()
+        public Rc_serviceV2Context()
         {
         }
 
-        public Rc_serviceContext(DbContextOptions<Rc_serviceContext> options)
+        public Rc_serviceV2Context(DbContextOptions<Rc_serviceV2Context> options)
             : base(options)
         {
         }
@@ -36,6 +39,12 @@ namespace Rc_serviceV2.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityUserLogin<string>>(entity =>
+            {
+                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+            });
             modelBuilder.Entity<Contratacion>(entity =>
             {
                 entity.ToTable("Contratacion");

@@ -11,9 +11,9 @@ namespace Rc_serviceV2.Controllers
 {
     public class OfertaController : Controller
     {
-        private readonly Rc_serviceContext _context;
+        private readonly Rc_serviceV2Context _context;
 
-        public OfertaController(Rc_serviceContext context)
+        public OfertaController(Rc_serviceV2Context context)
         {
             _context = context;
         }
