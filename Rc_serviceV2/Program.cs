@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Rc_serviceV2.Models;
 using Microsoft.AspNetCore.Identity;
-using Rc_serviceV2.Data;
+
 
 internal class Program
 {
@@ -11,10 +11,10 @@ internal class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
-        builder.Services.AddDbContext<Rc_serviceContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnetion")));
+        builder.Services.AddDbContext<Rc_serviceV2.Models.Rc_serviceV2Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnetion")));
 
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<Rc_serviceContext>();
+            .AddEntityFrameworkStores<Rc_serviceV2.Models.Rc_serviceV2Context>();
 
 
         builder.Services.AddControllersWithViews();

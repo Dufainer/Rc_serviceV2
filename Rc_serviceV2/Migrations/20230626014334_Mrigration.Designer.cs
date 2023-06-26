@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rc_serviceV2.Models;
 
@@ -10,10 +11,11 @@ using Rc_serviceV2.Models;
 
 namespace Rc_serviceV2.Migrations
 {
-    [DbContext(typeof(Rc_serviceContext))]
-    partial class Rc_serviceContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(Rc_serviceV2Context))]
+    [Migration("20230626014334_Mrigration")]
+    partial class Mrigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

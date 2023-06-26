@@ -11,9 +11,9 @@ namespace Rc_serviceV2.Controllers
 {
     public class InmuebleController : Controller
     {
-        private readonly Rc_serviceContext _context;
+        private readonly Rc_serviceV2Context _context;
 
-        public InmuebleController(Rc_serviceContext context)
+        public InmuebleController(Rc_serviceV2Context context)
         {
             _context = context;
         }
