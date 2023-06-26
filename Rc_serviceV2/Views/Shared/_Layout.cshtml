@@ -9,7 +9,9 @@
 	<link rel="stylesheet" href="~/Rc_serviceV2.styles.css" asp-append-version="true" />
 	<link href="~/css/side.menu.style.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/css/oferta.style.css" rel="stylesheet" asp-append-version="true" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
     <div class="sidebar" id="sidebar">
@@ -22,17 +24,17 @@
         <ul class="nav routes__pages">
             <li class="list__styleBar">
                 <div class="dropdown">
-                    <a href="">
-                        <i class='bx bxs-bowl-rice'></i>
-                        <span class="link__a">Prueba </span>
+                    <a asp-area="" asp-controller="PrestadoreDeServicio" asp-action="index">
+                        <i class='bx bxs-hard-hat'></i>
+                        <span class="link__a">Proveedores</span>
                     </a>
                 </div>
             </li>
             <li class="list__styleBar">
                 <div class="dropdown">
-                    <a href="">
+                    <a asp-area="" asp-controller="Servicio" asp-action="index">
                         <i class='bx bxs-lemon'></i>
-                        <span class="link__a">Prueba 2 </span>
+                        <span class="link__a">Servicios </span>
                     </a>
                 </div>
             </li>

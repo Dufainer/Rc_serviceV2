@@ -1,0 +1,77 @@
+﻿@model Rc_serviceV2.Models.PrestadoresDeServicio
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container-contact100 ">
+    <div class="wrap-contact100 bg-dark">
+        <form id="createForm" class="contact100-form text-light" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h3 class="contact100-form-title">Crear Proveedor</h3>
+
+            <div class="form-group">
+                <input class="form-control bg-dark text-light" placeholder="Id prestador" asp-for="IdPrestador">
+                <span asp-validation-for="IdPrestador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control bg-dark text-light" placeholder="Nombre" asp-for="NamePrestador">
+                <span asp-validation-for="NamePrestador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control bg-dark text-light" placeholder="Apellido" asp-for="LastnamePrestador">
+                <span asp-validation-for="LastnamePrestador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control bg-dark text-light" placeholder="Celular" asp-for="Celular">
+                <span asp-validation-for="Celular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control bg-dark text-light" placeholder="Email" asp-for="Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control bg-dark text-light" placeholder="Direccion" asp-for="UbicacionId">
+                <span asp-validation-for="UbicacionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select class="form-control bg-dark text-light" placeholder="Servicio" asp-for="ServiciosIdServicio" asp-items="ViewBag.ServiciosIdServicio"></select>
+            </div>
+
+            <div class="container-contact100-form-btn">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </div>
+
+            <div class="container-contact100-form-btn">
+                <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#createForm').submit(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Desea gaurdar los cambios?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar',
+                    denyButtonText: "No guardar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        setTimeout(function () {
+                            $('#createForm').unbind('submit').submit();
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambios no guardados', '', 'info');
+                    }
+                });
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
