@@ -19,12 +19,20 @@ namespace Rc_serviceV2.Controllers
         }
 
         // GET: Servicio
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? searchId)
         {
-              return _context.Servicios != null ? 
-                          View(await _context.Servicios.ToListAsync()) :
-                          Problem("Entity set 'Rc_serviceContext.Servicios'  is null.");
+            var servicioQuery = _context.Servicios.AsQueryable();
+
+            if (searchId.HasValue)
+            {
+                servicioQuery = servicioQuery.Where(s => s.IdServicio == searchId.Value);
+            }
+
+            var servicios = await servicioQuery.ToListAsync();
+
+            return View(servicios);
         }
+
 
         // GET: Servicio/Details/5
         public async Task<IActionResult> Details(int? id)
