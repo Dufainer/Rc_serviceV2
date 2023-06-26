@@ -211,7 +211,7 @@ nav {
     background-color: rgba(255, 255, 255, 0.404);
 }
 
-.sidebar .close ~ .home__section {
+.sidebar.close ~ .home__section {
     left: 78px;
     width: calc(100% - 78px);
     height: 100vh;
