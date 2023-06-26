@@ -14,26 +14,26 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
 
-@*<style>
+    @*<style>
     .btn-backd {
-        background: none;
-        border: none;
-        font-size: 0;
-        color: white;
-        cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 0;
+    color: white;
+    cursor: pointer;
     }
 
-        .btn-backd i {
-            font-size: 40px;
-            font-weight: bold;
-            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-        }
+    .btn-backd i {
+    font-size: 40px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
 
-        .btn-backd:hover i {
-            transform: scale(1.2);
-            color: blue; /* Cambia el color a tu preferencia */
-        }
-</style>*@
+    .btn-backd:hover i {
+    transform: scale(1.2);
+    color: blue; /* Cambia el color a tu preferencia */
+    }
+    </style>*@
 </head>
 
 
@@ -91,35 +91,35 @@
             </ul>
         }
     </div>
-        <div class="home__section">
+    <div class="home__section">
         <div class="home__content">
             <i class='bx bx-menu' id="btn_sidebar"></i>
             <!-- <span class="text">Drop</span> -->
-        @{
-            if (User.Identity?.IsAuthenticated ?? false)
-            {
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                    <button type="submit" class="btn-backd"><i class="fas fa-arrow-left"></i></button>
+            @{
+                if (User.Identity?.IsAuthenticated ?? false)
+                {
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                        <button type="submit" class="btn-backd"><i class="fas fa-arrow-left"></i></button>
 
-                </form>
+                    </form>
+                }
             }
-        }
-    </div>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        </div>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
 
-   
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/js/site.js" asp-append-version="true"></script>
-	<script src="~/js/side.menu.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/side.menu.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
