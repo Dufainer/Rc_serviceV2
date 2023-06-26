@@ -55,14 +55,14 @@
                             <span class="link__a">Home</span>
                         </a>
                     </div>
-                </li>
                 <li class="list__styleBar">
                     <div class="dropdown">
-                        <a asp-area="" asp-controller="Servicio" asp-action="Index">
+                        <a asp-area="" asp-controller="PrestadoresDeServicio" asp-action="Index">
                             <i class='bx bxs-book'></i>
-                            <span class="link__a">Servicios </span>
+                            <span class="link__a">Proveedores </span>
                         </a>
                     </div>
+                </li>
                 </li>
                 <li class="list__styleBar">
                     <div class="dropdown">
@@ -98,7 +98,7 @@
             @{
                 if (User.Identity?.IsAuthenticated ?? false)
                 {
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="~/Identity/Account/Login" method="post">
                         <button type="submit" class="btn-backd"><i class="fas fa-arrow-left"></i></button>
 
                     </form>

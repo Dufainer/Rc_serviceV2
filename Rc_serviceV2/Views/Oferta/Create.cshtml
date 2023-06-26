@@ -6,7 +6,7 @@
 
 
 <div class="container-contact100 ">
-    <div class="wrap-contact100 bg-dark">
+    <div @*class="wrap-contact100 bg-dark">*@
         <form id="createForm" class="contact100-form text-light" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <h3 style="text-align: center; padding-top :20px">Crear oferta</h3>
@@ -23,14 +23,15 @@
             <div class="form-group">
                 <select class="form-control bg-dark text-light" placeholder="Servicio" asp-for="ServiciosIdServicio" asp-items="ViewBag.ServiciosIdServicio"></select>
             </div>
-
+            <br />
             <div class="container-contact100-form-btn">
                 <button type="submit" class="btn btn-primary">Crear</button>
-            </div>
-
-            <div class="container-contact100-form-btn">
                 <a asp-action="Index" class="btn btn-secondary">Regresar</a>
             </div>
+
+         
+               
+            
         </form>
     </div>
 </div>
