@@ -149,36 +149,34 @@ namespace Rc_serviceV2.Controllers
                 return NotFound();
             }
 
-            var oferta = await _context.Ofertas
-                .Include(o => o.InmueblesIdInmuebleNavigation)
-                .Include(o => o.ServiciosIdServicioNavigation)
-                .FirstOrDefaultAsync(m => m.IdOfertas == id);
-            if (oferta == null)
-            {
-                return NotFound();
-            }
-
-            return View(oferta);
-        }
-
-        // POST: Oferta/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Ofertas == null)
-            {
-                return Problem("Entity set 'Rc_serviceContext.Ofertas'  is null.");
-            }
             var oferta = await _context.Ofertas.FindAsync(id);
             if (oferta != null)
             {
                 _context.Ofertas.Remove(oferta);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        // POST: Oferta/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Ofertas == null)
+        //    {
+        //        return Problem("Entity set 'Rc_serviceContext.Ofertas'  is null.");
+        //    }
+        //    var oferta = await _context.Ofertas.FindAsync(id);
+        //    if (oferta != null)
+        //    {
+        //        _context.Ofertas.Remove(oferta);
+        //    }
+            
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool OfertaExists(int id)
         {
