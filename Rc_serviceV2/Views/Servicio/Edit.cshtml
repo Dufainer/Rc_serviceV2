@@ -4,12 +4,24 @@
     ViewData["Title"] = "Edit";
 }
 
-<h3>Editar servicio</h3>
+<style>
 
+    .row {
+        width: 460px;
+        height: 90%;
+        padding: 30px;
+        align-items: center;
+        align-content: center;
+        /*text-align: center;*/
+        margin-left: 29%;
+        margin-right: 29%;
+    }
+
+</style>
+<h3 style="text-align: center; padding-top :20px">Editar Servicio</h3>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<div class="row" style="border: 2px 5px solid #000000;box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); border-radius:30px ">
+    <form asp-action="Edit" id="editForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdServicio" />
             <div class="form-group">
@@ -20,7 +32,7 @@
             <br />
             <div class="form-group">
                 <label asp-for="DetallesServicio" class="control-label"></label>
-                <input asp-for="DetallesServicio" class="form-control" />
+            <textarea asp-for="DetallesServicio" class="form-control" rows="4" cols="50" maxlength="250"></textarea>
                 <span asp-validation-for="DetallesServicio" class="text-danger"></span>
             </div>
             <br />
@@ -35,46 +47,34 @@
                 <a asp-action="Index" class="btn btn-dark">Volver</a>
             </div>
         </form>
-    </div>
 </div>
-
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         $(function () {
-            $('#editarBtn').click(function (e) {
-                e.preventDefault(); // Evitar que el formulario se envíe de forma predeterminada
-
-                // Verificar si los campos del servicio han cambiado
-                var tipoServicioAnterior = '@Model.TipoServicio';
-                var detallesServicioAnterior = '@Model.DetallesServicio';
-                var tipoServicioActual = $('#TipoServicio').val();
-                var detallesServicioActual = $('#DetallesServicio').val();
-
-                if (tipoServicioAnterior !== tipoServicioActual || detallesServicioAnterior !== detallesServicioActual) {
-                    // Los campos del servicio han cambiado, mostrar la alerta
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Éxito!',
-                        text: 'Has editado el servicio con éxito.',
-                        showConfirmButton: false,
-                        timer: 1700
-                    });
-
-                    // Enviar el formulario después de mostrar la alerta
-                    setTimeout(function () {
-                        $('form').unbind('submit').submit();
-                    }, 1700);
-                } else {
-                    // Los campos del servicio no han cambiado, enviar el formulario directamente
-                    $('form').unbind('submit').submit();
-                }
+            $('#editForm').submit(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Deseas gauradar los cambios?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar',
+                    denyButtonText: "No guardar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        setTimeout(function () {
+                            $('#editForm').unbind('submit').submit();
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambios no guardados', '', 'info');
+                    }
+                });
             });
         });
     </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+
+

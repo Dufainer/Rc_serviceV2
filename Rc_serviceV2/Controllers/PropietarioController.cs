@@ -120,39 +120,46 @@ namespace Rc_serviceV2.Controllers
         // GET: Propietario/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null || _context.Propietarios == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var propietario = await _context.Propietarios
-                .FirstOrDefaultAsync(m => m.IdPropietario == id);
+            var propietario = await _context.Propietarios.FindAsync(id);
             if (propietario == null)
             {
                 return NotFound();
             }
 
-            return View(propietario);
+            var inmuebles = await _context.Inmuebles.Where(i => i.PropietariosIdPropietario == id).ToListAsync();
+            _context.Inmuebles.RemoveRange(inmuebles);
+            _context.Propietarios.Remove(propietario);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
+
+
 
         // POST: Propietario/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            if (_context.Propietarios == null)
-            {
-                return Problem("Entity set 'Rc_serviceContext.Propietarios'  is null.");
-            }
-            var propietario = await _context.Propietarios.FindAsync(id);
-            if (propietario != null)
-            {
-                _context.Propietarios.Remove(propietario);
-            }
+        //public async Task<IActionResult> DeleteConfirmed(string id)
+        //{
+        //    if (_context.Propietarios == null)
+        //    {
+        //        return Problem("Entity set 'Rc_serviceContext.Propietarios'  is null.");
+        //    }
+        //    var propietario = await _context.Propietarios.FindAsync(id);
+        //    if (propietario != null)
+        //    {
+        //        _context.Propietarios.Remove(propietario);
+        //    }
             
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool PropietarioExists(string id)
         {

@@ -4,44 +4,74 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<style>
 
-<h4>Inmueble</h4>
+    .row{
+        width: 460px;
+        height: 90%;
+        padding: 30px;
+        align-items: center;
+        align-content: center;
+        /*text-align: center;*/
+        margin-left: 29%;
+        margin-right: 29%;
+    }
+
+</style>
+<h3 style="text-align: center; padding-top :20px">Agregar nuevo inmueble</h3>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<div class="row" style="border: 2px 5px solid #000000;box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); border-radius:30px ">
+    <form asp-action="Create" id="createForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="TipoInmueble" class="control-label"></label>
+                <label  class="control-label">Tipo de inmueble</label>
                 <input asp-for="TipoInmueble" class="form-control" />
                 <span asp-validation-for="TipoInmueble" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DetallesInmueble" class="control-label"></label>
-                <input asp-for="DetallesInmueble" class="form-control" />
+                <label  class="control-label">Detalle del inmueble</label>
+            <textarea asp-for="DetallesInmueble" class="form-control" rows="4" cols="50" maxlength="250"></textarea>
                 <span asp-validation-for="DetallesInmueble" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UbicacionId" class="control-label"></label>
+                <label  class="control-label">Direccion</label>
                 <input asp-for="UbicacionId" class="form-control" />
                 <span asp-validation-for="UbicacionId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PropietariosIdPropietario" class="control-label"></label>
+                <label  class="control-label">Propietario</label>
                 <select asp-for="PropietariosIdPropietario" class ="form-control" asp-items="ViewBag.PropietariosIdPropietario"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-dark">Volver</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(function () {
+            $('#createForm').submit(function (e) {
+                e.preventDefault(); // Evitar que el formulario se envíe de forma predeterminada
+
+                // Mostrar la alerta de éxito de SweetAlert
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: 'Se ha creado el Inmueble con éxito.'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Enviar el formulario para crear el servicio
+                        $('#createForm').unbind('submit').submit();
+                    }
+                });
+            });
+        });
+    </script>
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

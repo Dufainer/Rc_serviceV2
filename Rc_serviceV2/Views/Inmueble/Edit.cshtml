@@ -3,47 +3,77 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<style>
 
-<h1>Edit</h1>
+    .row {
+        width: 460px;
+        height: 90%;
+        padding: 30px;
+        align-items: center;
+        align-content: center;
+        /*text-align: center;*/
+        margin-left: 29%;
+        margin-right: 29%;
+    }
 
-<h4>Inmueble</h4>
+</style>
+<h3 style="text-align: center; padding-top :20px">Editar inmueble</h3>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdInmueble" />
-            <div class="form-group">
-                <label asp-for="TipoInmueble" class="control-label"></label>
-                <input asp-for="TipoInmueble" class="form-control" />
-                <span asp-validation-for="TipoInmueble" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetallesInmueble" class="control-label"></label>
-                <input asp-for="DetallesInmueble" class="form-control" />
-                <span asp-validation-for="DetallesInmueble" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UbicacionId" class="control-label"></label>
-                <input asp-for="UbicacionId" class="form-control" />
-                <span asp-validation-for="UbicacionId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PropietariosIdPropietario" class="control-label"></label>
-                <select asp-for="PropietariosIdPropietario" class="form-control" asp-items="ViewBag.PropietariosIdPropietario"></select>
-                <span asp-validation-for="PropietariosIdPropietario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="row" style="border: 2px 5px solid #000000;box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); border-radius:30px ">
+    <form asp-action="Edit" id="editForm">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="IdInmueble" />
+        <div class="form-group">
+            <label asp-for="TipoInmueble" class="control-label">Tipo de inmueble</label>
+            <input asp-for="TipoInmueble" class="form-control" />
+            <span asp-validation-for="TipoInmueble" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DetallesInmueble" class="control-label">Detalle del inmueble</label>
+            <textarea asp-for="DetallesInmueble" class="form-control" rows="4" cols="50" maxlength="250"></textarea>
+            <span asp-validation-for="DetallesInmueble" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UbicacionId" class="control-label">Direccion</label>
+            <input asp-for="UbicacionId" class="form-control" />
+            <span asp-validation-for="UbicacionId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PropietariosIdPropietario" class="control-label">Propietario</label>
+            <select asp-for="PropietariosIdPropietario" class="form-control" asp-items="ViewBag.PropietariosIdPropietario"></select>
+            <span asp-validation-for="PropietariosIdPropietario" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-dark">Volver</a>
+        </div>
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(function () {
+            $('#editForm').submit(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Deseas gauradar los cambios?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar',
+                    denyButtonText: "No guardar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        setTimeout(function () {
+                            $('#editForm').unbind('submit').submit();
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambios no guardados', '', 'info');
+                    }
+                });
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+

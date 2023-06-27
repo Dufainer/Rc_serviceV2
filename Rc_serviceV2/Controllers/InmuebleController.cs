@@ -47,7 +47,7 @@ namespace Rc_serviceV2.Controllers
         // GET: Inmueble/Create
         public IActionResult Create()
         {
-            ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario");
+            ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "NamePropietario");
             return View();
         }
 
@@ -60,13 +60,22 @@ namespace Rc_serviceV2.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (inmueble.DetallesInmueble.Length > 255)
+                {
+                    ModelState.AddModelError("DetallesInmueble", "El campo DetallesInmueble no puede exceder los 250 caracteres.");
+                    ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario", inmueble.PropietariosIdPropietario);
+                    return View(inmueble);
+                }
+
                 _context.Add(inmueble);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario", inmueble.PropietariosIdPropietario);
             return View(inmueble);
         }
+
 
         // GET: Inmueble/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -81,7 +90,7 @@ namespace Rc_serviceV2.Controllers
             {
                 return NotFound();
             }
-            ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario", inmueble.PropietariosIdPropietario);
+            ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "NamePropietario", inmueble.PropietariosIdPropietario);
             return View(inmueble);
         }
 
@@ -99,6 +108,12 @@ namespace Rc_serviceV2.Controllers
 
             if (ModelState.IsValid)
             {
+                if (inmueble.DetallesInmueble.Length > 255)
+                {
+                    ModelState.AddModelError("DetallesInmueble", "El campo DetallesInmueble no puede exceder los 250 caracteres.");
+                    ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario", inmueble.PropietariosIdPropietario);
+                    return View(inmueble);
+                }
                 try
                 {
                     _context.Update(inmueble);
@@ -129,22 +144,6 @@ namespace Rc_serviceV2.Controllers
                 return NotFound();
             }
 
-            var inmueble = await _context.Inmuebles
-                .Include(i => i.PropietariosIdPropietarioNavigation)
-                .FirstOrDefaultAsync(m => m.IdInmueble == id);
-            if (inmueble == null)
-            {
-                return NotFound();
-            }
-
-            return View(inmueble);
-        }
-
-        // POST: Inmueble/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
             if (_context.Inmuebles == null)
             {
                 return Problem("Entity set 'Rc_serviceContext.Inmuebles'  is null.");
@@ -152,12 +151,35 @@ namespace Rc_serviceV2.Controllers
             var inmueble = await _context.Inmuebles.FindAsync(id);
             if (inmueble != null)
             {
+                var oferta = await _context.Ofertas.Where(f => f.IdOfertas == id).ToListAsync();
+                _context.Ofertas.RemoveRange(oferta);
                 _context.Inmuebles.Remove(inmueble);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        // POST: Inmueble/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Inmuebles == null)
+        //    {
+        //        return Problem("Entity set 'Rc_serviceContext.Inmuebles'  is null.");
+        //    }
+        //    var inmueble = await _context.Inmuebles.FindAsync(id);
+        //    if (inmueble != null)
+        //    {
+        //        var oferta = await _context.Ofertas.Where(f => f.IdOfertas == id).ToListAsync();
+        //        _context.Ofertas.RemoveRange(oferta);
+        //        _context.Inmuebles.Remove(inmueble);
+        //    }
+            
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool InmuebleExists(int id)
         {

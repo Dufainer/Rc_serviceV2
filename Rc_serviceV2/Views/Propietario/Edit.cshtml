@@ -4,22 +4,37 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<style>
 
-<h4>Propietario</h4>
+    .row {
+        width: 460px;
+        height: 90%;
+        padding: 30px;
+        align-items: center;
+        align-content: center;
+        /*text-align: center;*/
+        margin-left: 29%;
+        margin-right: 29%;
+    }
+
+</style>
+<h3 style="text-align: center; padding-top :20px">Editar inmueble</h3>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdPropietario" />
+<div class="row" style="border: 2px 5px solid #000000;box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); border-radius:30px ">
+    <form asp-action="Edit" id="editForm">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+                <label  class="control-label">Id del propietario</label>
+                <input asp-for="IdPropietario" class="form-control" />
+                <span asp-validation-for="IdPropietario" class="text-danger"></span>
+            </div>
             <div class="form-group">
-                <label asp-for="NamePropietario" class="control-label"></label>
+                <label  class="control-label">Nombres</label>
                 <input asp-for="NamePropietario" class="form-control" />
                 <span asp-validation-for="NamePropietario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastnamePropietario" class="control-label"></label>
+                <label  class="control-label">Apellidos</label>
                 <input asp-for="LastnamePropietario" class="form-control" />
                 <span asp-validation-for="LastnamePropietario" class="text-danger"></span>
             </div>
@@ -34,21 +49,42 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UbicacionId" class="control-label"></label>
+                <label  class="control-label">Direccion</label>
                 <input asp-for="UbicacionId" class="form-control" />
                 <span asp-validation-for="UbicacionId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-dark">Volver</a>
+        </div>
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(function () {
+            $('#editForm').submit(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Deseas gauradar los cambios?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar',
+                    denyButtonText: "No guardar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        setTimeout(function () {
+                            $('#editForm').unbind('submit').submit();
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambios no guardados', '', 'info');
+                    }
+                });
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+

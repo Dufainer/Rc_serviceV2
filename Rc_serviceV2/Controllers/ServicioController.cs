@@ -68,12 +68,20 @@ namespace Rc_serviceV2.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (servicio.DetallesServicio?.Length > 250)
+                {
+                    ModelState.AddModelError("DetallesServicio", "El campo DetallesServicio no puede exceder los 250 caracteres.");
+                    return View(servicio);
+                }
+
                 _context.Add(servicio);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(servicio);
         }
+
 
         // GET: Servicio/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -105,6 +113,12 @@ namespace Rc_serviceV2.Controllers
 
             if (ModelState.IsValid)
             {
+                if (servicio.DetallesServicio?.Length > 250)
+                {
+                    ModelState.AddModelError("DetallesServicio", "El campo DetallesServicio no puede exceder los 250 caracteres.");
+                    return View(servicio);
+                }
+
                 try
                 {
                     _context.Update(servicio);
@@ -123,45 +137,57 @@ namespace Rc_serviceV2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(servicio);
         }
+
 
         // GET: Servicio/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Servicios == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var servicio = await _context.Servicios
-                .FirstOrDefaultAsync(m => m.IdServicio == id);
+            var servicio = await _context.Servicios.FindAsync(id);
             if (servicio == null)
             {
                 return NotFound();
             }
 
-            return View(servicio);
+            var ofertas = await _context.Ofertas.Where(o => o.ServiciosIdServicio == id).ToListAsync();
+            var prestadores = await _context.PrestadoresDeServicios.Where(p => p.ServiciosIdServicio == id).ToListAsync();
+            _context.Ofertas.RemoveRange(ofertas);
+            _context.PrestadoresDeServicios.RemoveRange(prestadores);
+            _context.Servicios.Remove(servicio);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
+
+
+
 
         // POST: Servicio/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Servicios == null)
-            {
-                return Problem("Entity set 'Rc_serviceContext.Servicios'  is null.");
-            }
-            var servicio = await _context.Servicios.FindAsync(id);
-            if (servicio != null)
-            {
-                _context.Servicios.Remove(servicio);
-            }
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Servicios == null)
+        //    {
+        //        return Problem("Entity set 'Rc_serviceContext.Servicios'  is null.");
+        //    }
+        //    var servicio = await _context.Servicios.FindAsync(id);
+        //    if (servicio != null)
+        //    {
+        //        _context.Servicios.Remove(servicio);
+        //    }
             
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool ServicioExists(int id)
         {

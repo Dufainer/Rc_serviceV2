@@ -63,8 +63,8 @@ namespace Rc_serviceV2.Controllers
         public IActionResult Create()
         {
 
-            ViewData["InmueblesIdInmueble"] = new SelectList(_context.Inmuebles, "IdInmueble", "IdInmueble");
-            ViewData["ServiciosIdServicio"] = new SelectList(_context.Servicios, "IdServicio", "IdServicio");
+            ViewData["InmueblesIdInmueble"] = new SelectList(_context.Inmuebles, "IdInmueble", "TipoInmueble");
+            ViewData["ServiciosIdServicio"] = new SelectList(_context.Servicios, "IdServicio", "TipoServicio");
             return View();
         }
                                                 
@@ -99,8 +99,8 @@ namespace Rc_serviceV2.Controllers
             {
                 return NotFound();
             }
-            ViewData["InmueblesIdInmueble"] = new SelectList(_context.Inmuebles, "IdInmueble", "IdInmueble", oferta.InmueblesIdInmueble);
-            ViewData["ServiciosIdServicio"] = new SelectList(_context.Servicios, "IdServicio", "IdServicio", oferta.ServiciosIdServicio);
+            ViewData["InmueblesIdInmueble"] = new SelectList(_context.Inmuebles, "IdInmueble", "TipoInmueble", oferta.InmueblesIdInmueble);
+            ViewData["ServiciosIdServicio"] = new SelectList(_context.Servicios, "IdServicio", "TipoServicio", oferta.ServiciosIdServicio);
             return View(oferta);
         }
 

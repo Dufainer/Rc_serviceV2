@@ -3,50 +3,67 @@
 @{
     ViewData["Title"] = "Create";
 }
-<div class="container-contact100 ">
-    <div class="wrap-contact100 bg-dark">
-        <form id="createForm" class="contact100-form text-light" asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <h3 class="contact100-form-title">Crear Proveedor</h3>
+<style>
 
+    .row {
+        width: 460px;
+        height: 90%;
+        padding: 30px;
+        align-items: center;
+        align-content: center;
+        /*text-align: center;*/
+        margin-left: 29%;
+        margin-right: 29%;
+    }
+
+</style>
+<h3 style="text-align: center; padding-top :20px">Agregar nuevo Proveedor</h3>
+<div class="row" style="border: 2px 5px solid #000000;box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); border-radius:30px ">
+        <form id="createForm" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <input class="form-control bg-dark text-light" placeholder="Id prestador" asp-for="IdPrestador">
+            <label class="control-label">Id Proveedor</label>
+            <input class="form-control" placeholder="Id prestador" asp-for="IdPrestador">
                 <span asp-validation-for="IdPrestador" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input class="form-control bg-dark text-light" placeholder="Nombre" asp-for="NamePrestador">
+            <label class="control-label">Nombres</label>
+            <input class="form-control" placeholder="Nombres" asp-for="NamePrestador">
                 <span asp-validation-for="NamePrestador" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input class="form-control bg-dark text-light" placeholder="Apellido" asp-for="LastnamePrestador">
+            <label class="control-label">Apellidos</label>
+            <input class="form-control" placeholder="Apellidos" asp-for="LastnamePrestador">
                 <span asp-validation-for="LastnamePrestador" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input class="form-control bg-dark text-light" placeholder="Celular" asp-for="Celular">
+            <label class="control-label">Celular</label>
+            <input class="form-control" placeholder="Celular" asp-for="Celular">
                 <span asp-validation-for="Celular" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input class="form-control bg-dark text-light" placeholder="Email" asp-for="Email">
+            <label class="control-label">Email</label>
+            <input class="form-control" placeholder="Email" asp-for="Email">
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input class="form-control bg-dark text-light" placeholder="Direccion" asp-for="UbicacionId">
+            <label class="control-label">Direccion</label>
+            <input class="form-control" placeholder="Direccion" asp-for="UbicacionId">
                 <span asp-validation-for="UbicacionId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <select class="form-control bg-dark text-light" placeholder="Servicio" asp-for="ServiciosIdServicio" asp-items="ViewBag.ServiciosIdServicio"></select>
+            <label class="control-label">Servicio</label>
+            <select class="form-control" placeholder="Servicio" asp-for="ServiciosIdServicio" asp-items="ViewBag.ServiciosIdServicio"></select>
             </div>
 
-            <div class="container-contact100-form-btn">
+        <div class="form-group">
                 <button type="submit" class="btn btn-primary">Crear</button>
+            <a asp-action="Index" class="btn btn-secondary">Regresar</a>
             </div>
 
-            <div class="container-contact100-form-btn">
-                <a asp-action="Index" class="btn btn-secondary">Regresar</a>
-            </div>
         </form>
     </div>
-</div>
+
 
 @section Scripts {
     <script>

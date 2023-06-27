@@ -4,45 +4,34 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Propietario</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NamePropietario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NamePropietario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastnamePropietario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastnamePropietario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Celular)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Celular)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UbicacionId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UbicacionId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdPropietario">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card bg-dark rounded-lg" style="width: 80%;">
+        <div class="card-header">
+            <h1 class="card-title text-light">INFORMACION</h1>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-light">Propietario</h4>
+                    <hr class="bg-light" />
+                    <dl class="text-light">
+                        <dt>Nombres:</dt>
+                        <dd>@Html.DisplayFor(model => model.NamePropietario)</dd>
+                        <dt>Apellidos:</dt>
+                        <dd>@Html.DisplayFor(model => model.LastnamePropietario)</dd>
+                        <dt>Celular:</dt>
+                        <dd>@Html.DisplayFor(model => model.Celular)</dd>
+                        <dt>Email:</dt>
+                        <dd>@Html.DisplayFor(model => model.Email)</dd>
+                        <dt>Dirección:</dt>
+                        <dd>@Html.DisplayFor(model => model.UbicacionId)</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a asp-action="Edit" asp-route-id="@Model?.IdPropietario" class="btn btn-primary">Edit</a>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
 </div>
