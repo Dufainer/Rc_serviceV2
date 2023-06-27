@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Rc_serviceV2.Models;
 using System.Diagnostics;
 
 namespace Rc_serviceV2.Controllers
 {
-	public class HomeController : Controller
+    [Authorize]
+    public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
 
