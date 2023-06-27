@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Rc_serviceV2.styles.css" asp-append-version="true" />
     <link href="~/css/side.menu.style.css" rel="stylesheet" />
-    @*<link href="~/css/oferta.style.css" rel="stylesheet" />*@
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @*<style>
     .btn-backd {
@@ -44,52 +45,67 @@
             <i class='bx bxl-nodejs'></i>
             <span class="logo__name">Rc Service</span>
         </div>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <!--  * lista de Rutas  -->
-            <ul class="nav routes__pages">
-                <li class="list__styleBar">
-                    <div class="dropdown">
-                        <a asp-area="" asp-controller="Home" asp-action="Index">
-                            <i class='bx bxs-home'></i>
-                            <span class="link__a">Home</span>
-                        </a>
-                    </div>
-                <li class="list__styleBar">
-                    <div class="dropdown">
-                        <a asp-area="" asp-controller="PrestadoreDeServicio" asp-action="Index">
-                            <i class='bx bxs-book'></i>
-                            <span class="link__a">Proveedores </span>
-                        </a>
-                    </div>
-                </li>
-                </li>
-                <li class="list__styleBar">
-                    <div class="dropdown">
-                        <a asp-area="" asp-controller="Oferta" asp-action="Index">
-                            <i class='bx bxs-offer'></i>
-                            <span class="link__a">Oferta</span>
-                        </a>
-                    </div>
-                </li>
-                <li class="list__styleBar">
-                    <div class="dropdown">
-                        <a asp-area="" asp-controller="Inmueble" asp-action="Index">
-                            <i class='bx bxs-building-house'></i>
-                            <span class="link__a">Inmueble</span>
-                        </a>
-                    </div>
-                </li>
-                <li class="list__styleBar">
-                    <div class="dropdown">
-                        <a asp-area="" asp-controller="Propietario" asp-action="Index">
-                            <i class='bx bxs-briefcase-alt-2'></i>
-                            <span class="link__a">Propietario</span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        }
+        <!--  * lista de Rutas  -->
+
+        <div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <!--  * lista de Rutas  -->
+
+                <ul class="nav routes__pages">
+                    <li class="list__styleBar">
+                        <div class="dropdown">
+                            <a asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class='bx bxs-home'></i>
+                                <span class="link__a">Home</span>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="list__styleBar">
+                        <div class="dropdown">
+                            <a class="link__a" asp-area="" asp-controller="Propietarios" asp-action="Index">
+                                <i class='bx bx-body'></i>
+                                Propietarios
+                            </a>
+                        </div>
+                    </li>
+                    <li class="list__styleBar">
+                        <div class="dropdown">
+                            <a class="link__a" asp-area="" asp-controller="Servicio" asp-action="Index">
+                                <i class='bx bx-body'></i>
+                                Servicio
+                            </a>
+                        </div>
+                    </li>
+                    <li class="list__styleBar">
+                        <div class="dropdown">
+                            <a class="link__a" asp-area="" asp-controller="Inmuebles" asp-action="Index">
+                                <i class='bx bx-body'></i>
+                                Inmuebles
+                            </a>
+                        </div>
+                    </li>
+                    <li class="list__styleBar">
+                        <div class="dropdown">
+                            <a asp-area="" asp-controller="PrestadoreDeServicio" asp-action="Index">
+                                <i class='bx bxs-book'></i>
+                                <span class="link__a">Proveedores </span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="list__styleBar">
+                        <div class="dropdown">
+                            <a asp-area="" asp-controller="Oferta" asp-action="Index">
+                                <i class='bx bxs-offer'></i>
+                                <span class="link__a">Oferta</span>
+                            </a>
+                        </div>
+                    </li>
+                    
+                </ul>
+            }
+        </div>
     </div>
     <div class="home__section">
         <div class="home__content">
@@ -120,6 +136,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/side.menu.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
