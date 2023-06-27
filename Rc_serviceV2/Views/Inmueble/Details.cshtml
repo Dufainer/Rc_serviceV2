@@ -4,7 +4,55 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card bg-dark rounded-lg" style="width: 80%;">
+        <div class="card-header">
+            <h1 class="card-title text-light">INFORMACION</h1>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-light">Propietario</h4>
+                    <hr class="bg-light" />
+                    <dl class="text-light">
+                        <dt>Nombres:</dt>
+                        <dd>@Html.DisplayFor(model => model.PropietariosIdPropietarioNavigation.NamePropietario)</dd>
+                        <dt>Apellidos:</dt>
+                        <dd>@Html.DisplayFor(model => model.PropietariosIdPropietarioNavigation.LastnamePropietario)</dd>
+                        <dt>Celular:</dt>
+                        <dd>@Html.DisplayFor(model => model.PropietariosIdPropietarioNavigation.Celular)</dd>
+                        <dt>Email:</dt>
+                        <dd>@Html.DisplayFor(model => model.PropietariosIdPropietarioNavigation.Email)</dd>
+                        <dt>Dirección:</dt>
+                        <dd>@Html.DisplayFor(model => model.PropietariosIdPropietarioNavigation.UbicacionId)</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-light">Inmueble</h4>
+                    <hr class="bg-light" />
+                    <dl class="text-light">
+                        <dt>Id immueble:</dt>
+                        <dd>@Html.DisplayFor(model => model.IdInmueble)</dd>
+                        <dt>Tipo de inmueble:</dt>
+                        <dd>@Html.DisplayFor(model => model.TipoInmueble)</dd>
+                        <dt>Detalle:</dt>
+                        <dd>@Html.DisplayFor(model => model.DetallesInmueble)</dd>
+                        <dt>Direccion:</dt>
+                        <dd>@Html.DisplayFor(model => model.UbicacionId)</dd>
+
+                    </dl>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a asp-action="Edit" asp-route-id="@Model?.IdInmueble" class="btn btn-primary">Edit</a>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h1>Details</h1>
 
 <div>
     <h4>Inmueble</h4>
@@ -39,4 +87,5 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.IdInmueble">Edit</a> |
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
+

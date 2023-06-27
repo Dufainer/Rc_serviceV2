@@ -102,7 +102,8 @@ namespace Rc_serviceV2.Models
                 entity.HasOne(d => d.PropietariosIdPropietarioNavigation)
                     .WithMany(p => p.Inmuebles)
                     .HasForeignKey(d => d.PropietariosIdPropietario)
-                    .HasConstraintName("FK__Inmuebles__Propi__3B75D760");
+                    .HasConstraintName("FK__Inmuebles__Propi__3B75D760")
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Logeo>(entity =>
@@ -139,7 +140,10 @@ namespace Rc_serviceV2.Models
                 entity.HasOne(d => d.ServiciosIdServicioNavigation)
                     .WithMany(p => p.Oferta)
                     .HasForeignKey(d => d.ServiciosIdServicio)
-                    .HasConstraintName("FK__Ofertas__Servici__440B1D61");
+                    .HasConstraintName("FK__Ofertas__Servici__440B1D61")
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                    
             });
 
             modelBuilder.Entity<PrestadoresDeServicio>(entity =>
@@ -182,7 +186,9 @@ namespace Rc_serviceV2.Models
                 entity.HasOne(d => d.ServiciosIdServicioNavigation)
                     .WithMany(p => p.PrestadoresDeServicios)
                     .HasForeignKey(d => d.ServiciosIdServicio)
-                    .HasConstraintName("FK__Prestador__Servi__403A8C7D");
+                    .HasConstraintName("FK__Prestador__Servi__403A8C7D")
+                     .OnDelete(DeleteBehavior.Cascade); 
+
             });
 
             modelBuilder.Entity<Propietario>(entity =>
@@ -235,6 +241,7 @@ namespace Rc_serviceV2.Models
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("Tipo_Servicio");
+
             });
 
             OnModelCreatingPartial(modelBuilder);

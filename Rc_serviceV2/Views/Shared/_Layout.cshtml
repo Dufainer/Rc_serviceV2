@@ -13,27 +13,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @*<style>
-    .btn-backd {
-    background: none;
-    border: none;
-    font-size: 0;
-    color: white;
-    cursor: pointer;
-    }
 
-    .btn-backd i {
-    font-size: 40px;
-    font-weight: bold;
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
-
-    .btn-backd:hover i {
-    transform: scale(1.2);
-    color: blue; /* Cambia el color a tu preferencia */
-    }
-    </style>*@
+    <style>
+        .btn-backd {
+            border: none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 
@@ -57,12 +47,19 @@
                     </div>
                 <li class="list__styleBar">
                     <div class="dropdown">
-                        <a asp-area="" asp-controller="PrestadoresDeServicio" asp-action="Index">
-                            <i class='bx bxs-book'></i>
+                        <a asp-area="" asp-controller="PrestadoreDeServicio" asp-action="Index">
+                            <i class='bx bx-body'></i>
                             <span class="link__a">Proveedores </span>
                         </a>
                     </div>
                 </li>
+                <li class="list__styleBar">
+                    <div class="dropdown">
+                        <a asp-area="" asp-controller="Servicio" asp-action="Index">
+                            <i class='bx bxs-book'></i>
+                            <span class="link__a">Servicio</span>
+                        </a>
+                    </div>
                 </li>
                 <li class="list__styleBar">
                     <div class="dropdown">
@@ -99,7 +96,12 @@
                 if (User.Identity?.IsAuthenticated ?? false)
                 {
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="~/Identity/Account/Login" method="post">
-                        <button type="submit" class="btn-backd">Regresar <i class='bx bx-arrow-back'></i> </button>
+                        <button type="submit" class="btn-backd">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                                <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+                            </svg>
+                        </button>
+
 
                     </form>
                 }
