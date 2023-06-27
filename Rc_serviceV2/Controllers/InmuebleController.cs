@@ -47,7 +47,7 @@ namespace Rc_serviceV2.Controllers
         // GET: Inmueble/Create
         public IActionResult Create()
         {
-            ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario");
+            ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "NamePropietario");
             return View();
         }
 
@@ -60,13 +60,22 @@ namespace Rc_serviceV2.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (inmueble.DetallesInmueble.Length > 255)
+                {
+                    ModelState.AddModelError("DetallesInmueble", "El campo DetallesInmueble no puede exceder los 250 caracteres.");
+                    ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario", inmueble.PropietariosIdPropietario);
+                    return View(inmueble);
+                }
+
                 _context.Add(inmueble);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario", inmueble.PropietariosIdPropietario);
             return View(inmueble);
         }
+
 
         // GET: Inmueble/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -81,7 +90,7 @@ namespace Rc_serviceV2.Controllers
             {
                 return NotFound();
             }
-            ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario", inmueble.PropietariosIdPropietario);
+            ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "NamePropietario", inmueble.PropietariosIdPropietario);
             return View(inmueble);
         }
 
@@ -99,6 +108,12 @@ namespace Rc_serviceV2.Controllers
 
             if (ModelState.IsValid)
             {
+                if (inmueble.DetallesInmueble.Length > 255)
+                {
+                    ModelState.AddModelError("DetallesInmueble", "El campo DetallesInmueble no puede exceder los 250 caracteres.");
+                    ViewData["PropietariosIdPropietario"] = new SelectList(_context.Propietarios, "IdPropietario", "IdPropietario", inmueble.PropietariosIdPropietario);
+                    return View(inmueble);
+                }
                 try
                 {
                     _context.Update(inmueble);

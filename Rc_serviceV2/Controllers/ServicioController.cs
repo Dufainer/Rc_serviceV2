@@ -68,12 +68,20 @@ namespace Rc_serviceV2.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (servicio.DetallesServicio?.Length > 250)
+                {
+                    ModelState.AddModelError("DetallesServicio", "El campo DetallesServicio no puede exceder los 250 caracteres.");
+                    return View(servicio);
+                }
+
                 _context.Add(servicio);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(servicio);
         }
+
 
         // GET: Servicio/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -105,6 +113,12 @@ namespace Rc_serviceV2.Controllers
 
             if (ModelState.IsValid)
             {
+                if (servicio.DetallesServicio?.Length > 250)
+                {
+                    ModelState.AddModelError("DetallesServicio", "El campo DetallesServicio no puede exceder los 250 caracteres.");
+                    return View(servicio);
+                }
+
                 try
                 {
                     _context.Update(servicio);
@@ -123,8 +137,10 @@ namespace Rc_serviceV2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(servicio);
         }
+
 
         // GET: Servicio/Delete/5
         public async Task<IActionResult> Delete(int? id)
